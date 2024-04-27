@@ -1,7 +1,8 @@
 
-const Input = ({Placeholder,Type,refer}) => {
+const Input = ({...otherPros}) => {
+  const {Type, val, Placeholder,handleChange} = otherPros;
   return (
-    <input ref={refer} type={Type} placeholder={Placeholder} className='p-[13px] outline-none m-3  rounded-md' />
+    <input value={val} type={Type} onChange={handleChange} placeholder={Placeholder} className='p-[13px] outline-none m-3  rounded-md' />
   )
 }
 
