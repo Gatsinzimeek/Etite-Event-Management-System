@@ -1,4 +1,4 @@
-# Event Management Platform - Internship Assessment
+# Event Management Platform 
 
 Welcome to the Event Management Platform In this project, a web application for managing events organized by our company. This platform will enable users to browse upcoming events, book tickets, and manage their bookings, while administrators will have access to an admin dashboard for event management.
 
