@@ -3,19 +3,23 @@ import Input from '../../Component/Input/input';
 import Button from '../../Component/Button/Button';
 import { useState } from 'react';
 const Login = () => {
-  const [Username, setUsername] = useState('');
-  const [pin, setPin] = useState('');
+  const [data, setData] = useState({
+    Username: '',
+    pin: '',
+  });
   const [error, setError] = useState(null);
 
-  const handleClick = (e) =>{
+  const handleLogin = (e) =>{
     e.preventDefault();
-    if(!Username || !pin) {
+    if(!data.Username || !data.pin) {
       setError('Please fill All filled');
     }else{
       setError(null)
     }
-    setUsername('')
-    setPin('')
+    setData({
+      Username: '',
+      pin: '',
+    })
   }
 
   return (
@@ -31,9 +35,9 @@ const Login = () => {
             <h1 className='text-[30px] font-[600]'> Welcome</h1>
             <p>Login Into your account</p>
           </div>
-          <form onSubmit={handleClick} className='grid w-[70%] m-auto'>
-              <Input Placeholder='Username' Type='text' val={Username} handleChange={ e => setUsername(e.target.value)} />
-              <Input Placeholder='Password' Type='password'  val={pin} handleChange={ e => setPin(e.target.value)}/>
+          <form onSubmit={handleLogin} className='grid w-[70%] m-auto'>
+              <Input Placeholder='Username' Type='text' val={data.Username} handleChange={ e => setData({...data, name: e.target.value})} />
+              <Input Placeholder='Password' Type='password'  val={data.pin} handleChange={ e => setData({...data, pin: e.target.value})}/>
               <Button>Sign In</Button>
           </form>
           <span>Don't have Account?<a href="/signup" className='pl-3 text-blue-400'>Create Account</a></span>

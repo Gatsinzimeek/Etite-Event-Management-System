@@ -3,9 +3,11 @@ import Input from "../../Component/Input/input"
 import Button from "../../Component/Button/Button"
 import { useState } from 'react'
 const Signup = () => {
-  const [Username, setUsername] = useState('');
-  const [pin, setPin] = useState('');
-  const [Cpin, setCpin] = useState('');
+  const [data, setData] = useState({
+    Username: '',
+    pin: '',
+    Cpin: '',
+  });
   const [error, setError] = useState(null);
 
   const handleClick = (e) =>{
@@ -17,9 +19,11 @@ const Signup = () => {
     }else{
       setError(null)
     }
-    setCpin('')
-    setUsername('')
-    setPin('')
+    setData({
+      Username: '',
+      pin: '',
+      Cpin: ''
+    })
   }
 
 
@@ -37,9 +41,9 @@ const Signup = () => {
             <p>Create your account</p>
           </div>
           <form method='POST' onSubmit={handleClick} className='grid w-[70%] m-auto'>
-              <Input val={Username} handleChange={ e => setUsername(e.target.value)} Placeholder='Username' Type='text' />
-              <Input val={pin} handleChange={ e => setPin(e.target.value)} Placeholder='Password' Type='password'/>
-              <Input  val={Cpin} handleChange={ e => setCpin(e.target.value)}  Placeholder='Confirm Password' Type='password'/>
+              <Input val={data.Username} handleChange={ e => setData({...data, name: e.target.value})} Placeholder='Username' Type='text' />
+              <Input val={data.pin} handleChange={ e => setData({...data, pin: e.target.value})} Placeholder='Password' Type='password'/>
+              <Input val={data.Cpin} handleChange={ e => setData({...data, Cpin: e.target.value})}  Placeholder='Confirm Password' Type='password'/>
               <Button >Sign In</Button>
           </form>
           <span>Already have Account?<a href="/" className='pl-3 text-blue-400'>Login Here</a></span>
