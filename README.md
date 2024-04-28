@@ -27,9 +27,9 @@ MERN (MongoDB, Express.js, React.js, Node.js) stack for this project.
 
 # How to utilize this Project
 
-npm install to add all feature 
-npm run dev to start UI
-npm run start to start Server
+- npm install to add all feature 
+- npm run dev to start UI
+- npm run start to start Server
 
 ## How to Interact with UI On Admin Pannel 
 
