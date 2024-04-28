@@ -1,32 +1,42 @@
 import login from './../../assets/Login.png';
 import Input from '../../Component/Input/input';
 import Button from '../../Component/Button/Button';
+import axios from 'axios'
+import {toast} from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 const Login = () => {
   const [data, setData] = useState({
-    Username: '',
-    pin: '',
+    username: '',
+    password: '',
   });
-  const [error, setError] = useState(null);
-
-  const handleLogin = (e) =>{
+  const Navigate = useNavigate();
+  const handleLogin = async (e) =>{
     e.preventDefault();
-    if(!data.Username || !data.pin) {
-      setError('Please fill All filled');
-    }else{
-      setError(null)
+    const {username,password} = data;
+    try{
+      const {data} = await axios.post('/login',{
+        username, password
+      })
+      if(data.error){
+          toast.error(data.error)
+      }else{
+                
+        setData({})
+        toast.success('Login Successfully');
+        if(username === 'admin'){
+          Navigate('/Admindashboard');
+        }else{
+           Navigate('/Userdashboard');
+        }
+      }
+    }catch(erro) {
+      console.log(erro)
     }
-    setData({
-      Username: '',
-      pin: '',
-    })
   }
 
   return (
     <section className='flex w-full h-full flex-wrap items-center max-md:grid max-md:p-[30px] Container'>
-        {
-          error !== null && <div className='text-white bg-blue-300 absolute top-4 right-5 w-[24%] p-[18px] rounded-xl'>{error}</div>
-        }
         <div className=' w-[50%] max-md:w-full'>
           <img src={login} alt="login-bg" className='w-[90%]'/>
         </div>
@@ -35,10 +45,10 @@ const Login = () => {
             <h1 className='text-[30px] font-[600]'> Welcome</h1>
             <p>Login Into your account</p>
           </div>
-          <form onSubmit={handleLogin} className='grid w-[70%] m-auto'>
-              <Input Placeholder='Username' Type='text' val={data.Username} handleChange={ e => setData({...data, name: e.target.value})} />
-              <Input Placeholder='Password' Type='password'  val={data.pin} handleChange={ e => setData({...data, pin: e.target.value})}/>
-              <Button>Sign In</Button>
+          <form method='POST' onSubmit={handleLogin} className='grid w-[70%] m-auto'>
+            <Input val={data.username} handleChange={ e => setData({...data, username: e.target.value})} Placeholder='Username' Type='text' />
+            <Input val={data.password} handleChange={ e => setData({...data, password: e.target.value})} Placeholder='Password' Type='password'/>
+            <Button>Sign In</Button>
           </form>
           <span>Don't have Account?<a href="/signup" className='pl-3 text-blue-400'>Create Account</a></span>
         </div>

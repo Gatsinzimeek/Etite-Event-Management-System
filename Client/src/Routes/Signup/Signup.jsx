@@ -2,36 +2,42 @@ import RegistBg from '../../assets/Regist.png'
 import Input from "../../Component/Input/input"
 import Button from "../../Component/Button/Button"
 import { useState } from 'react'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 const Signup = () => {
   const [data, setData] = useState({
-    Username: '',
-    pin: '',
-    Cpin: '',
+    username: '',
+    password: '',
+    C_pin: '',
   });
-  const [error, setError] = useState(null);
+  const Navigate = useNavigate();
 
-  const handleClick = (e) =>{
+  const handleClick = async (e) =>{
     e.preventDefault();
-    if(!Username || !pin || !Cpin) {
-      setError('Please fill All filled');
-    }else if(pin !== Cpin){
-      setError('Wrong password confirm');
-    }else{
-      setError(null)
+   
+    const {username, password,C_pin} = data;
+    try{
+        const {data} = await axios.post('/signup', {
+          username, password,C_pin
+        }) 
+        if(data.error){
+          toast.error(data.error);
+        }else{
+          
+          setData({})
+          toast.success('User Registered');
+          Navigate('/');
+        }
+    }catch(err){
+      console.log(err);
     }
-    setData({
-      Username: '',
-      pin: '',
-      Cpin: ''
-    })
   }
 
 
   return (
     <section className='flex w-full h-full relative flex-wrap items-center max-md:grid max-md:p-[30px] Container'>
-        {
-          error !== null && <div className='text-white bg-blue-300 absolute top-4 right-5 w-[24%] p-[18px] rounded-xl'>{error}</div>
-        }
+       
         <div className=' w-[50%] max-md:w-full'>
           <img src={RegistBg} alt="login-bg" className='w-[90%]'/>
         </div>
@@ -41,10 +47,10 @@ const Signup = () => {
             <p>Create your account</p>
           </div>
           <form method='POST' onSubmit={handleClick} className='grid w-[70%] m-auto'>
-              <Input val={data.Username} handleChange={ e => setData({...data, name: e.target.value})} Placeholder='Username' Type='text' />
-              <Input val={data.pin} handleChange={ e => setData({...data, pin: e.target.value})} Placeholder='Password' Type='password'/>
-              <Input val={data.Cpin} handleChange={ e => setData({...data, Cpin: e.target.value})}  Placeholder='Confirm Password' Type='password'/>
-              <Button >Sign In</Button>
+              <Input val={data.username} handleChange={ e => setData({...data, username: e.target.value})} Placeholder='Username' Type='text' />
+              <Input val={data.password} handleChange={ e => setData({...data, password: e.target.value})} Placeholder='Password' Type='password'/>
+              <Input val={data.C_pin} handleChange={ e => setData({...data, C_pin: e.target.value})}  Placeholder='Confirm Password' Type='password'/>
+              <Button >Register</Button>
           </form>
           <span>Already have Account?<a href="/" className='pl-3 text-blue-400'>Login Here</a></span>
         </div>
