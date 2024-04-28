@@ -25,3 +25,12 @@ Welcome to the Event Management Platform In this project, a web application for 
 ## Tech Stack
 MERN (MongoDB, Express.js, React.js, Node.js) stack for this project.
 
+# How to utilize this Project
+
+npm install to add all feature 
+npm run dev to start UI
+npm run start to start Server
+
+## How to Interact with UI On Admin Pannel 
+
+on creation of Account Use Admin as Username in order to access Admin Dashboard
