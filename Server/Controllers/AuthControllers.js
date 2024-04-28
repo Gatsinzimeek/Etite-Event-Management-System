@@ -1,5 +1,6 @@
 import userModel from "../Models/User.js";
 import { hashPassword,comparePassword } from "../Helper/AuthHelper.js";
+import jwt from 'jsonwebtoken'
 export const test = (req, res) => {
     res.send('mine');
 }
@@ -53,7 +54,12 @@ export const RegisterUser = async (req,res) => {
 export const LoginUser = async (req,res) => {
     try{
         const {username, password} = req.body;
-        
+
+        if(!username || !password){
+            return res.json({
+                error: 'Fill All fields is require'
+            })
+        }
         // checking if user is in our database if not diplay message
         const user = await userModel.findOne({username});
         if(!user) {
@@ -69,11 +75,28 @@ export const LoginUser = async (req,res) => {
             error: 'Password Does not match'
             })
         }else{
+            jwt.sign({
+                username: user.username, id: user._id,
+            },process.env.JWT_SECRET, {}, (err, token) => {
+                if(err) res.json('there is issue', err);
+                res.cookie('token', token).json(user)
+            })
             res.json('sucessfully')
         }
         
+    }catch(error){
+        console.log(error)
     }
-    catch(error){
+}
 
+export const getProfile = (req,res) => {
+    const {token} = req.cookies;
+    if(token) {
+        jwt.verify(token,process.env.JWT_SECRET, {}, (err, user) => {
+            if(err) throw err;
+            res.json(user)
+        })
+    }else{
+        res.json(null);
     }
 }

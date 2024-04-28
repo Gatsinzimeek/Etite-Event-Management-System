@@ -5,13 +5,13 @@ import Login from "./Routes/Login/Login"
 import Signup from "./Routes/Signup/Signup";
 import axios from "axios";
 import {Toaster} from 'react-hot-toast';
-
+import UsercontextProvider from "./Context/UserContext";
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 function App() {
   return (
-    <>
+    <UsercontextProvider>
       <Toaster position="bottom-right" toastOptions={{duration:2000}}/>
       <Routes>
           <Route path="/" element={<Login />}/>
@@ -19,7 +19,7 @@ function App() {
           <Route path="/Admindashboard" element={<Admin/>}/>
           <Route path="/Userdashboard" element={<Client/>}/>
       </Routes>
-    </>
+    </ UsercontextProvider>
   )
 }
 
