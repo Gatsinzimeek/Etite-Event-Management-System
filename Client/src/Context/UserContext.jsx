@@ -11,9 +11,12 @@ const UsercontextProvider = ({children}) =>{
             axios.get('/profile').then(({data}) => {
                 setUser(data)
             })
+        }else{
+            console.log('user not found')
         }
     }, []);
-
+    
+        console.log(user)
         const result = {
             user,
             setUser

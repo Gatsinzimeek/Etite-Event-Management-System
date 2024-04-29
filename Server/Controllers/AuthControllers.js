@@ -74,14 +74,11 @@ export const LoginUser = async (req,res) => {
             return res.json({
             error: 'Password Does not match'
             })
-        }else{
-            jwt.sign({
-                username: user.username, id: user._id,
-            },process.env.JWT_SECRET, {}, (err, token) => {
-                if(err) res.json('there is issue', err);
-                res.cookie('token', token).json(user)
-            })
-            res.json('sucessfully')
+        }
+        if(MatchPassword){
+            const token = jwt.sign({username: user.username},process.env.JWT_SECRET, {expiresIn: '1h'},)
+            res.cookie('token', token,{httpOnly: true, maxAge: 360000}).json(user)
+            return res.json('sucessfully')
         }
         
     }catch(error){
