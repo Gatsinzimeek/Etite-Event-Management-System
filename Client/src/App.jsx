@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true;
 function App() {
   return (
     <UsercontextProvider>
-      <Toaster position="bottom-right" toastOptions={{duration:2000}}/>
+      <Toaster position="bottom-right" toastOptions={{duration:2000}} />
       <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/signup" element={<Signup/>}/>
@@ -23,4 +23,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

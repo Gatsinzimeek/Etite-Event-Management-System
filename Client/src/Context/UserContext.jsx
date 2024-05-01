@@ -1,7 +1,10 @@
 import axios from "axios";
 import { createContext,useEffect,useState } from "react";
 
-export const userContext = createContext({});
+export const UserContext = createContext({
+    user: null,
+    setUser: () => {}
+});
 
 const UsercontextProvider = ({children}) =>{
     const [user, setUser] = useState(null);
@@ -10,21 +13,19 @@ const UsercontextProvider = ({children}) =>{
         if(!user) {
             axios.get('/profile').then(({data}) => {
                 setUser(data)
+                console.log(data.token);
             })
-        }else{
-            console.log('user not found')
         }
     }, []);
-    
-        console.log(user)
+
         const result = {
             user,
             setUser
         }
     return (
-        <userContext.Provider value={result}>
+        <UserContext.Provider value={result}>
             {children}
-        </userContext.Provider>
+        </UserContext.Provider>
         )
 }
 

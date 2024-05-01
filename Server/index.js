@@ -7,6 +7,10 @@ import cookieParser from 'cookie-parser';
 
     dotenv.config()
     const app = express();
+    app.use(cors({
+        origin: ['http://localhost:5173'],
+        credentials: true
+    }))
 // Database Connection
  mongoose.connect(process.env.MONGO_URL)
  .then(() => console.log('Database Connected'))

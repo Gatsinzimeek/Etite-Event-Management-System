@@ -77,7 +77,7 @@ export const LoginUser = async (req,res) => {
         }
         if(MatchPassword){
             const token = jwt.sign({username: user.username},process.env.JWT_SECRET, {expiresIn: '1h'},)
-            res.cookie('token', token,{httpOnly: true, maxAge: 360000}).json(user)
+            res.cookie('token', token,{httpOnly: true, maxAge: 360000})
             return res.json('sucessfully')
         }
         
@@ -91,7 +91,7 @@ export const getProfile = (req,res) => {
     if(token) {
         jwt.verify(token,process.env.JWT_SECRET, {}, (err, user) => {
             if(err) throw err;
-            res.json(user)
+           return res.json(user)
         })
     }else{
         res.json(null);
