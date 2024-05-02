@@ -5,7 +5,8 @@ import Login from "./Routes/Login/Login"
 import Signup from "./Routes/Signup/Signup";
 import axios from "axios";
 import {Toaster} from 'react-hot-toast';
-import UsercontextProvider from "./Context/UserContext";
+import UsercontextProvider from "../src/Context/User.Context";
+import PrivateRoute from "./Routes/Private Routes/PrivateRoute";
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -16,8 +17,8 @@ function App() {
       <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/Admindashboard" element={<Admin/>}/>
-          <Route path="/Userdashboard" element={<Client/>}/>
+          <Route path="/Admindashboard" element={<PrivateRoute><Admin/></PrivateRoute>}/>
+          <Route path="/Userdashboard" element={<PrivateRoute><Client/></PrivateRoute>}/>
       </Routes>
     </ UsercontextProvider>
   )
