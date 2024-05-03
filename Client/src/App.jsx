@@ -7,7 +7,11 @@ import axios from "axios";
 import {Toaster} from 'react-hot-toast';
 import UsercontextProvider from "../src/Context/User.Context";
 import PrivateRoute from "./Routes/Private Routes/PrivateRoute";
-
+import Attendee from './Routes/Admin Dashboard/Attendee/Attendee'
+import Profile from './Routes/Admin Dashboard/Profile Setting/Profile'
+import  Event from './Routes/Admin Dashboard/Events/Events'
+import Ticket from './Routes/Admin Dashboard/BookedTicket/Ticket'
+import Main from './Routes/Admin Dashboard/Home/Home'
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 function App() {
@@ -17,8 +21,16 @@ function App() {
       <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/Admindashboard" element={<PrivateRoute><Admin/></PrivateRoute>}/>
-          <Route path="/Userdashboard" element={<PrivateRoute><Client/></PrivateRoute>}/>
+          <Route path="/Admindashboard" element={<PrivateRoute><Admin/></PrivateRoute>}>
+              <Route path='Home' element={<Main/>}></Route>
+              <Route path='Booking' element={<Ticket/>}></Route>
+              <Route path='Profile' element={<Profile/>}></Route>
+              <Route path='Attendee' element={<Attendee/>}></Route>
+              <Route path='Events' element={<Event/>}></Route>
+          </Route>
+          <Route path="/Userdashboard" element={<PrivateRoute><Client/></PrivateRoute>}>
+
+          </Route>
       </Routes>
     </ UsercontextProvider>
   )

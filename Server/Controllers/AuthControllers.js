@@ -76,7 +76,7 @@ export const LoginUser = async (req,res) => {
             })
         }
         if(MatchPassword){
-            const token = jwt.sign({username: user.username},process.env.JWT_SECRET, {expiresIn: '1h'},)
+            const token = jwt.sign({username: user.username},process.env.JWT_SECRET, {expiresIn: '1h'})
             res.cookie('token', token,{httpOnly: true, maxAge: 360000})
             return res.json('sucessfully')
         }
