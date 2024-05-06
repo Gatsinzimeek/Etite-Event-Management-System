@@ -25,7 +25,7 @@ const Login = () => {
         setData({})
         toast.success('Login Successfully');
         if(username === 'admin'){
-          Navigate('/Admindashboard');
+          Navigate('/Admindashboard/Home');
         }else{
            Navigate('/Userdashboard');
         }
