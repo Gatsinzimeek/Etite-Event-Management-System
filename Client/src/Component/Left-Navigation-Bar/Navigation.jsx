@@ -1,9 +1,11 @@
-import React from 'react'
+
 
 const Navigation = () => {
   return (
     <div>
-      <p>Nav Side BAR</p>
+        <ul>
+          <li><a href="">home</a></li>
+        </ul>
     </div>
   )
 }
