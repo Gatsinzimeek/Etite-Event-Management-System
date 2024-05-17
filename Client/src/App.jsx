@@ -18,15 +18,15 @@ function App() {
       <Toaster position="bottom-right" toastOptions={{duration:2000}} />
       <Routes>
           <Route path="/" element={<Login />}/>
-          <Route path="/signup" element={<Signup/>}/>
-          <Route path="/Admindashboard" element={<Admin/>}>
+          <Route path="signup" element={<Signup/>}/>
+          <Route path="Admindashboard" element={<Admin/>}>
               <Route path='Home' element={<Main/>}></Route>
               <Route path='Booking' element={<Ticket/>}></Route>
               <Route path='Profile' element={<Profile/>}></Route>
               <Route path='Attendee' element={<Attendee/>}></Route>
               <Route path='Events' element={<Event/>}></Route>
           </Route>
-          <Route path="/Userdashboard" element={<Client/>}>
+          <Route path="Userdashboard" element={<Client/>}>
 
           </Route>
       </Routes>

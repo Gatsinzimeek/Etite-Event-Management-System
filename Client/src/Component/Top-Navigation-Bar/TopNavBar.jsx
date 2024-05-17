@@ -7,9 +7,9 @@ const TopNavBar = () => {
       <div>
         <h1>Welcome </h1>
       </div>
-      <div className='flex items-center justify-center '>
+      <div className='flex items-center justify-center flex-wrap '>
         <div className='relative'>
-        <input type="text" placeholder='Search Here ...' className='px-[13px] py-[5px] w-[400px] outline-none rounded-2xl border bg-slate-100' />
+        <input type="text" placeholder='Search Here ...' className='px-[13px] py-[5px] w-[400px] max-md:hidden outline-none rounded-2xl border bg-slate-100' />
         <FontAwesomeIcon icon={faSearch} className='absolute right-3 hover:text-blue-400 hover:cursor-pointer top-2 '/>
         </div>
         <div className='relative'>

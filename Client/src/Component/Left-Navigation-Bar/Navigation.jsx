@@ -1,38 +1,37 @@
 import {
   faHome,
-  faLocationDot,
-  faBus,
   faUser,
-  faCircleInfo,
+  faCalendar,
+  faTicket,
+  faCalendarPlus,
+  faArrowRightToBracket
 } from "@fortawesome/free-solid-svg-icons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navigation = () => {
   const Navbar = [
     {
       Icon: faHome,
       Title: "Dashboard",
-      path: "/dashboard/home",
+      path: "/Admindashboard/Home",
     },
     {
-      Icon: faBus,
+      Icon: faCalendar,
       Title: "Events",
-      path: "/dashboard/Buses",
+      path: "Events",
     },
 
     {
-      Icon: faLocationDot,
+      Icon: faTicket,
       Title: "Tickets",
-      path: "/dashboard/Map",
+      path: "Booking",
     },
 
     {
-      Icon: faCircleInfo,
-      Title: "Details",
-      path: "/dashboard/Info",
+      Icon: faCalendarPlus,
+      Title: "Attendee",
+      path: "Attendee",
     },
     {
       Icon: faUser,
@@ -42,12 +41,12 @@ const Navigation = () => {
   ];
 
   return (
-    <div>
+    <div className="w-full">
       <ul>
         {Navbar.map((nav, index) => (
               <li
                 key={index}
-                className="p-[5px] px-[5px] mb-3 text-[15px] cursor-pointer hover:bg-[#3e61ac] hover:text-white rounded-xl mx-2"
+                className=" mb-3  border-b border-black text-[15px] cursor-pointer hover:bg-[#3e61bc] hover:text-white p-2 mx-2"
               >
                 <Link to={nav.path}>
                   <FontAwesomeIcon
@@ -59,8 +58,10 @@ const Navigation = () => {
               </li>
             ))}
       </ul>
-      <div>
-
+      <div className="mt-[150%] text-center cursor-pointer hover:text-white">
+            <span className="text-[18px]" title="logout">Logout
+              <FontAwesomeIcon icon={faArrowRightToBracket} className="pl-2 "/> 
+            </span>
       </div>
     </div>
   )
