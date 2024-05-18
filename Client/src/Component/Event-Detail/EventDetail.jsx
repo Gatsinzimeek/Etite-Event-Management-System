@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const EventDetail = ({...otherProps}) => {
     const {Date,classnam,EventName,OrganizerName,cityName,StartTime,EndTime} = otherProps;
   return (
-    <div className='flex'>
-      <div className={`${classnam}`}>
+    <div className='flex p-4 rounded-md bg-slate-100 mb-3 items-center'>
+      <div className={`${classnam} w-[62px] py-1 text-center block mr-3 rounded-lg`}>
         <p>{Date}</p>
       </div>
       <div>
