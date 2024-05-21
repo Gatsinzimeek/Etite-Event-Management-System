@@ -1,4 +1,4 @@
-import EventDetail from "../Event-Detail/EventDetail"
+
 
 const DetailBox = ({children,...otherProps}) => {
     const {heading} = otherProps;

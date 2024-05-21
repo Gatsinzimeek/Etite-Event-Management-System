@@ -4,7 +4,8 @@ import {
   faCalendar,
   faTicket,
   faCalendarPlus,
-  faArrowRightToBracket
+  faArrowRightToBracket,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,6 +43,12 @@ const Navigation = () => {
 
   return (
     <div className="w-full">
+      <h1 className="text-center text-[17px] mb-7 text-white">Event-Trace 
+      <FontAwesomeIcon
+                    icon={faBars}
+                    className="pl-[15px] pr-[10px] cursor-pointer"
+                  />
+      </h1>
       <ul>
         {Navbar.map((nav, index) => (
               <li
