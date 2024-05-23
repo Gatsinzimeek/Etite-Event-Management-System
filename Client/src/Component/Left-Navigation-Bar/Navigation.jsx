@@ -42,12 +42,9 @@ const Navigation = () => {
   ];
 
   return (
-    <div className="w-full">
-      <h1 className="text-center text-[17px] mb-7 text-white">Event-Trace 
-      <FontAwesomeIcon
-                    icon={faBars}
-                    className="pl-[15px] pr-[10px] cursor-pointer"
-                  />
+    <>
+      <h1 className="text-center text-[17px] mb-7 text-white"> <span className="max-md:hidden">Event-Trace</span> 
+     
       </h1>
       <ul>
         {Navbar.map((nav, index) => (
@@ -60,17 +57,18 @@ const Navigation = () => {
                     icon={nav.Icon}
                     className="pl-[10px] pr-[10px]"
                   />
-                  {nav.Title}
+                  <span className="max-md:hidden">{nav.Title}</span>
+                  
                 </Link>
               </li>
             ))}
       </ul>
-      <div className="mt-[150%] text-center cursor-pointer hover:text-white">
-            <span className="text-[18px]" title="logout">Logout
+      <div className="text-center mt-auto mb-2 cursor-pointer hover:text-white">
+            <p className="text-[18px]" title="logout"> <span className="max-md:hidden">Logout</span>
               <FontAwesomeIcon icon={faArrowRightToBracket} className="pl-2 "/> 
-            </span>
+            </p>
       </div>
-    </div>
+    </>
   )
 }
 

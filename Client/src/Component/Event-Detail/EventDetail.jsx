@@ -27,7 +27,7 @@ const EventDetail = ({...otherProps}) => {
             </div>
             <div>
                 <p className="flex">
-                  <img src={timer} alt="" className="pr-1 text-blue-500"/>
+                  <img src={timer} alt="" className="pr-1 w-[23px] h-[20px] text-blue-500"/>
                     {StartTime}-{EndTime}
                 </p>
             </div>
