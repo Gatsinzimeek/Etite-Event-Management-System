@@ -43,7 +43,7 @@ const Navigation = () => {
 
   return (
     <>
-      <h1 className="text-center text-[17px] mb-7 text-white"> <span className="max-md:hidden">Event-Trace</span> 
+      <h1 className="text-center text-[17px] mb-7 text-white">Event-Trace 
      
       </h1>
       <ul>
@@ -57,7 +57,7 @@ const Navigation = () => {
                     icon={nav.Icon}
                     className="pl-[10px] pr-[10px]"
                   />
-                  <span className="max-md:hidden">{nav.Title}</span>
+                  <span>{nav.Title}</span>
                   
                 </Link>
               </li>

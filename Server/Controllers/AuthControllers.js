@@ -93,6 +93,7 @@ export const getProfile = (req,res) => {
             if(err) throw err;
            return res.json(user)
         })
+        console.log('hlelo')
     }else{
         res.json(null);
     }
