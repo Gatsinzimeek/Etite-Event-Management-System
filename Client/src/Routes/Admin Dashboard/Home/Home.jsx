@@ -76,18 +76,18 @@ const Main = () => {
           }
         </DetailBox>
         <div className="flex flex-col">
-            <DetailBox></DetailBox>
-            <DetailBox></DetailBox>
+            <div >
+                <h1>Ticket Sold</h1>
+                <div>
+                  <div>
+                      
+                  <h2>{}</h2>
+                  </div>
+
+                </div>
+            </div>
         </div>
-        {/* <DetailBox heading='Recent Events'>
-            <EventDetail />
-        </DetailBox>
-        <DetailBox heading='Ticket Sold'>
-            <EventDetail />
-        </DetailBox>
-        <DetailBox heading='My Clients'>
-            <EventDetail />
-        </DetailBox> */}
+        
     </div>
     </>
   )
