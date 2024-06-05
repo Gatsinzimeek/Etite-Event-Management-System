@@ -18,7 +18,7 @@ const Signup = () => {
    
     const {username, password,C_pin} = data;
     try{
-        const {data} = await axios.post('/signup', {
+        const {data} = await axios.post('/api/Auth/signup', {
           username, password,C_pin
         }) 
         if(data.error){

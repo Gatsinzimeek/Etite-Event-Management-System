@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     const {username,password} = data;
     try{
-      const {data} = await axios.post('/login',{
+      const {data} = await axios.post('/api/Auth/login',{
         username, password
       })
       if(data.error){

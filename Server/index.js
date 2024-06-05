@@ -21,7 +21,7 @@ import cookieParser from 'cookie-parser';
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}));
-app.use('/',AuthRoutes);
+app.use('/api/Auth',AuthRoutes);
 const port = process.env.PORT || 7000;
 
 app.listen(port, () => {
