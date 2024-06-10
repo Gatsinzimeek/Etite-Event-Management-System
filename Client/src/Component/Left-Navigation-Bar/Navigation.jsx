@@ -7,10 +7,13 @@ import {
   faArrowRightToBracket,
   faBars
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Navigation = () => {
+    const navigate = useNavigate();
   const Navbar = [
     {
       Icon: faHome,
@@ -41,6 +44,15 @@ const Navigation = () => {
     },
   ];
 
+  const LogoutUser = async () =>{
+    const {user} = await axios.get('/api/Auth/profile');
+    if(!user){
+      toast.error('There is not user loggedIn')
+    }else{
+      console.log(user.username);
+    navigate('/');
+    }
+  }
   return (
     <>
       <h1 className="text-center text-[17px] mb-7 text-white">Event-Trace 
@@ -64,7 +76,7 @@ const Navigation = () => {
             ))}
       </ul>
       <div className="text-center mt-auto mb-2 cursor-pointer hover:text-white">
-            <p className="text-[18px]" title="logout"> <span className="max-md:hidden">Logout</span>
+            <p className="text-[18px]" title="logout" onClick={LogoutUser}> <span className="max-md:hidden">Logout</span>
               <FontAwesomeIcon icon={faArrowRightToBracket} className="pl-2 "/> 
             </p>
       </div>

@@ -87,6 +87,8 @@ export const LoginUser = async (req,res) => {
     }
 }
 
+//This Help function for gettin User Profile 
+
 export const getProfile = (req,res) => {
     const token = req.cookies.token;
     
@@ -98,4 +100,30 @@ export const getProfile = (req,res) => {
     }else{
         res.json('there is no any token write there');
     }
+}
+
+export const UpdatedUser = (req,res) => {
+    res.send('Update User')
+}
+
+export const LogoutUser = (req,res) => {
+    const token = req.cookies.token
+
+    if(token){
+        try{
+            res.cookie('token','', {
+                httpOnly: true,
+                expiresIn: new Date(0),
+            })
+            res.json({
+                message: 'User Logged Out Successful'}) 
+        }catch(error){
+
+        }
+    }else{
+        res.json({
+            message: 'Token not found'
+        })
+    }
+    
 }
