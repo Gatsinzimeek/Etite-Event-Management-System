@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../../States/Slices/userApiSlice';
+import { setCredential } from '../../States/Slices/authslice';
 const Login = () => {
   const [data, setData] = useState({
     username: '',
@@ -22,27 +23,30 @@ const Login = () => {
   const handleLogin = async (e) =>{
     e.preventDefault();
     const {username,password} = data;
+    try{
+      const res = await login({username, password}).unwrap();
+      dispatch(setCredential({...res}));
+      Navigate('/Admindashboard/Home');
+      toast.success(info);
       
-    console.log(UserInfo);
-    // try{
     //   const {data} = await axios.post('/api/Auth/login',{
     //     username, password
     //   })
-    //   if(data.error){
-    //       toast.error(data.error)
-    //   }else{
+      // if(data.error){
+      //     toast.error(data.error)
+      // }else{
                 
-    //     setData({})
-    //     toast.success('Login Successfully');
-    //     if(username === 'admin'){
-    //       Navigate('/Admindashboard/Home');
-    //     }else{
-    //        Navigate('/Userdashboard');
-    //     }
-    //   }
-    // }catch(erro) {
-    //   console.log(erro)
-    // }
+      //   setData({})
+      //   toast.success('Login Successfully');
+      //   if(username === 'admin'){
+      //     Navigate('/Admindashboard/Home');
+      //   }else{
+      //      Navigate('/Userdashboard');
+      //   }
+      // }
+    }catch(erro) {
+      toast.error(UserInfo.message);
+    }
   }
 
   return (
